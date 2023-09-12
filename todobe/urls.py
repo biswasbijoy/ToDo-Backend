@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from tdcore import urls as tdcore_urls
 from tdtaskManagement import urls as tdtaskManagement_urls
+from tdauth import urls as tdauth_urls
 
 from django.urls import re_path
 from rest_framework import permissions
@@ -12,6 +13,7 @@ urlpatterns = [
     path('todobe/admin/', admin.site.urls),
     path('todobe/api/', include(tdcore_urls)),
     path('todobe/api/', include(tdtaskManagement_urls)),
+    path('todobe/api/', include(tdauth_urls)),
 ]
 
 schema_view = get_schema_view(
