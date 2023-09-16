@@ -5,10 +5,16 @@ from tdcore.models.models import BaseStampStampModel
 User = get_user_model()
 
 class Project(BaseStampStampModel) :
+    PROJECT_STATUS_OPTION = (
+        ("active", "Active"),
+        ("deleted", "Deleted"),
+    )
+    
     name = models.CharField(max_length=512, unique=True)
     description = models.TextField(blank=True)
     project_manager = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='project_project_manager')
     members = models.ManyToManyField(User, related_name='project_members')
+    status = models.CharField(max_length=20, choices=PROJECT_STATUS_OPTION, default="active")
     
     def __str__(self):
         return self.name
